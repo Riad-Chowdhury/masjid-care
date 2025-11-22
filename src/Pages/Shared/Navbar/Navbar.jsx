@@ -67,6 +67,18 @@ const Navbar = () => {
           Ramadan Menu
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to={"/contact"}
+          className={({ isActive }) =>
+            isActive
+              ? "bg-white text-[#32CD32] px-3 py-1 rounded-md font-semibold"
+              : "text-black hover:bg-white/20 px-3 py-1 rounded-md"
+          }
+        >
+          Masjid User
+        </NavLink>
+      </li>
     </>
   );
   return (

@@ -13,6 +13,8 @@ import RamadanMenu from "../Pages/RamadanMenu/RamadanMenu";
 import Error from "../Pages/Error/Error";
 import Ramadan from "../Pages/RamadanMenu/MenuItems/Ramadan";
 import AddRamadanItem from "../Pages/RamadanMenu/MenuItems/AddRamadanItem";
+import Contact from "../Pages/Contact/Contact";
+import ContactForm from "../Pages/ContactForm/ContactForm";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +56,18 @@ export const router = createBrowserRouter([
             <AddPost></AddPost>
           </PrivateRouts>
         ),
+      },
+      {
+        path: "contact",
+        element: (
+          <PrivateRouts>
+            <Contact></Contact>
+          </PrivateRouts>
+        ),
+      },
+      {
+        path: "contactPage",
+        Component: ContactForm,
       },
     ],
   },

@@ -17,7 +17,6 @@ export default function AddPost() {
   const onSubmit = (data) => {
     console.log("Form Data:", data);
     axiosSecure.post(`/posts`, data).then((response) => {
-      console.log("Post added successfully:", response.data);
       toast("Post added successfully!");
       if (response.data.insertedId) {
         navigate("/aboutUs");
