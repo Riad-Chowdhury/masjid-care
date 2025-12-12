@@ -2,8 +2,10 @@ import { useForm } from "react-hook-form";
 import { FaPhoneAlt, FaUser, FaMapMarkerAlt, FaSearch } from "react-icons/fa";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 export default function ContactForm() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -21,6 +23,7 @@ export default function ContactForm() {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate("/contact");
       }
     });
     reset();

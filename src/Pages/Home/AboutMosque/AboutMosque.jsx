@@ -58,7 +58,7 @@ const AboutMosque = () => {
               alt=""
             />{" "}
             <img
-              className="w-[250px] h-[400px] rounded-t-full "
+              className="w-[200px] h-[380px] rounded-t-full "
               src={b3}
               alt=""
             />{" "}

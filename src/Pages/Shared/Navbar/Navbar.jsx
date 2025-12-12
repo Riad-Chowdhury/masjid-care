@@ -82,7 +82,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div>
+    <div className="">
       <div className="navbar bg-[#90a955] text-black shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
@@ -112,7 +112,11 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center">
-            <img className="w-16 h-16 rounded-2xl" src={navLogo} alt="" />
+            <img
+              className="w-16 h-16 rounded-4xl shadow-sm"
+              src={navLogo}
+              alt=""
+            />
             <a className="btn-ghost font-semibold lg:text-2xl md:text-xl sm:text-sm">
               Masjid Care
             </a>

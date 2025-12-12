@@ -14,6 +14,7 @@ export default function AddPost() {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure("/posts");
   const navigate = useNavigate();
+
   const onSubmit = (data) => {
     console.log("Form Data:", data);
     axiosSecure.post(`/posts`, data).then((response) => {
@@ -22,6 +23,7 @@ export default function AddPost() {
         navigate("/aboutUs");
       }
     });
+
     reset();
   };
 

@@ -15,6 +15,9 @@ import Ramadan from "../Pages/RamadanMenu/MenuItems/Ramadan";
 import AddRamadanItem from "../Pages/RamadanMenu/MenuItems/AddRamadanItem";
 import Contact from "../Pages/Contact/Contact";
 import ContactForm from "../Pages/ContactForm/ContactForm";
+import ContactUpdateForm from "../Pages/ContactForm/ContactUpdateForm/ContactUpdateForm";
+import UserManagementForm from "../Pages/UserManagementForm/userManagementForm";
+import UserManagementDetails from "../Pages/UserManagementDetails/UserManagementDetails";
 
 export const router = createBrowserRouter([
   {
@@ -69,6 +72,12 @@ export const router = createBrowserRouter([
         path: "contactPage",
         Component: ContactForm,
       },
+      {
+        path: "contactUpdateForm/:id",
+        Component: ContactUpdateForm,
+        loader: ({ params }) =>
+          fetch(`https://masjid-care-server.onrender.com/contact/${params.id}`),
+      },
     ],
   },
   {
@@ -96,6 +105,16 @@ export const router = createBrowserRouter([
       {
         path: "userManagement",
         Component: UserManagement,
+      },
+      {
+        path: "userManagementForm",
+        Component: UserManagementForm,
+      },
+      {
+        path: "userManagementDetails/:id",
+        loader: ({ params }) =>
+          fetch(`https://masjid-care-server.onrender.com/users/${params.id}`),
+        Component: UserManagementDetails,
       },
     ],
   },

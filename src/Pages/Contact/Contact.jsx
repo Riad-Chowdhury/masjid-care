@@ -3,9 +3,12 @@ import { IoSearch } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { NavLink } from "react-router";
+import { FaEdit } from "react-icons/fa";
+
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import user from "../../assets/user.png";
+import Swal from "sweetalert2";
 
 export default function Contact() {
   const axiosSecure = useAxiosSecure();
@@ -18,13 +21,41 @@ export default function Contact() {
     },
   });
 
-  // ✅ Delete Function
+  //  Delete Function
   const handleDelete = async (id) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to undo this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (!result.isConfirmed) return;
+
     try {
-      await axiosSecure.delete(`/contact/${id}`);
-      refetch();
+      const res = await axiosSecure.delete(`/contact/${id}`);
+
+      if (res.data.deletedCount > 0) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your item has been deleted.",
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+
+        refetch();
+      }
     } catch (error) {
       console.error("Delete failed", error);
+      Swal.fire({
+        title: "Error!",
+        text: "Something went wrong.",
+        icon: "error",
+      });
     }
   };
 
@@ -61,14 +92,22 @@ export default function Contact() {
           data-aos-duration="800"
           className="bg-white shadow-lg rounded-xl p-6 flex flex-col md:flex-row mt-1 items-center gap-6 relative"
         >
-          {/* ❌ Delete Icon */}
-          <button
-            onClick={() => handleDelete(contact._id)}
-            className="absolute top-3 right-3 text-red-500 hover:text-red-700 transition"
-            title="Delete"
-          >
-            <FaTrashAlt size={18} />
-          </button>
+          {/* ✏️ Edit & 🗑️ Delete Icons */}
+          <div className="absolute top-3 right-3 flex gap-7">
+            <NavLink
+              to={`/contactUpdateForm/${contact._id}`}
+              className="text-blue-600 hover:text-blue-800 transition"
+            >
+              <FaEdit size={25} />
+            </NavLink>
+
+            <button
+              onClick={() => handleDelete(contact._id)}
+              className="text-red-600 hover:text-red-800 transition"
+            >
+              <FaTrashAlt size={25} />
+            </button>
+          </div>
 
           {/* 🖼️ Image */}
           <img
